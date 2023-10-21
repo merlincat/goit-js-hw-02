@@ -1,30 +1,27 @@
-// Оголоси функцію getShippingMessage, яка очікує три параметри, значення яких будуть задаватися під час її виклику:
+// Задача 2. Форматування повідомлення
+// Оголоси функцію formatMessage(message, maxLength), яка приймає рядок (параметр message) та перевіряє його довжину відповідно до заданої максимальної довжини (параметр maxLength).
 
-// country — перший параметр, рядок, що містить країну доставки
-// price — другий параметр, число, що містить загальну вартість товару
-// deliveryFee — третій параметр, число, що містить вартість доставки товару
-// Доповни код функції так, щоб вона повертала рядок з повідомленням про доставку товару в країну користувача: "Shipping to <country> will cost <totalPrice> credits", де:
+// Доповни код функції таким чином, що:
 
-// <country> — це країни доставки
-// <totalPrice> — це загальна вартість замовлення, що включає вартість товару і його доставки
-//         Візьми код нижче і встав після оголошення своєї функції для перевірки коректності її роботи. У консоль будуть виведені результати її роботи.
-// console.log(getShippingMessage("Australia", 120, 50)); // "Shipping to Australia will cost 170 credits"
-// console.log(getShippingMessage("Germany", 80, 20)); // "Shipping to Germany will cost 100 credits"
-// console.log(getShippingMessage("Sweden", 100, 20)); // "Shipping to Sweden will cost 120 credits"
+// Якщо довжина рядка дорівнює або менша за maxLength, то функція повертає початковий рядок без змін.
+// Якщо довжина перевищує maxLength, то функція обрізає рядок до maxLength символів, додає трикрапку "..." в кінці та повертає обрізану версію.
+// Візьми код нижче і встав після оголошення своєї функції для перевірки коректності її роботи. У консоль будуть виведені результати її роботи.
 
-// Залиш цей код для перевірки ментором.
+function formatMessage(message, maxLength) {
+  let messageLength = message.length;
+  let shotrMessage = `${message.slice(0, maxLength)}...`;
 
-// На що буде звертати увагу ментор при перевірці:
-// Оголошена функція getShippingMessage(country, price, deliveryFee)
-// Виклик getShippingMessage("Australia", 120, 50) повертає "Shipping to Australia will cost 170 credits"
-// Виклик getShippingMessage("Germany", 80, 20) повертає "Shipping to Germany will cost 100 credits"
-// Виклик getShippingMessage("Sweden", 100, 20) повертає "Shipping to Sweden will cost 120 credits"
-// Виклик getShippingMessage з будь якими-валідними аргументами повертає правильне значення
-function getShippingMessage(country, price, deliveryFee) {
-  let totalPrice = price + deliveryFee;
-  let shippingAlert = `Shipping to ${country} will cost ${totalPrice} credits`;
-  return shippingAlert;
+  // if (messageLength <= maxLength) {
+  //   return message;
+  // } else {
+  //   return `${shotrMessage}...`;
+  // }
+  return messageLength <= maxLength ? message : shotrMessage;
 }
-console.log(getShippingMessage('Australia', 120, 50));
-console.log(getShippingMessage('Germany', 80, 20));
-console.log(getShippingMessage('Sweden', 100, 20));
+
+console.log(formatMessage('Curabitur ligula sapien', 16)); // "Curabitur ligula..."
+console.log(formatMessage('Curabitur ligula sapien', 23)); // "Curabitur ligula sapien"
+console.log(formatMessage('Vestibulum facilisis purus nec', 20)); // "Vestibulum facilisis..."
+console.log(formatMessage('Vestibulum facilisis purus nec', 30)); // "Vestibulum facilisis purus nec"
+console.log(formatMessage('Nunc sed turpis a felis in nunc fringilla', 15)); // "Nunc sed turpis..."
+console.log(formatMessage('Nunc sed turpis a felis in nunc fringilla', 41)); // "Nunc sed turpis a felis in nunc fringilla"
